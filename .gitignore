@@ -1,0 +1,4 @@
+bundle
+.rbenv-gemsets
+.env
+tmp
