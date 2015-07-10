@@ -61,4 +61,8 @@ class App < Sinatra::Base
       e.to_json
     end
   end
+
+  get '/gifts' do
+
+  end
 end
