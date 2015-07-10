@@ -8,6 +8,7 @@ class App < Sinatra::Base
     begin
         @from = params[:from]
         @email = params[:email]
+        @message = params[:message]
         @price = params[:price].to_i
         @item = params[:item]
         @stripe_token = params[:stripeToken]
@@ -16,11 +17,12 @@ class App < Sinatra::Base
           amount: @price,
           currency: 'gbp',
           source: @stripe_token,
-          description: "#{@from} brought #{@item} - £#{@price/100.round(2)}",
+          description: "#{@from} paid for #{@item}",
           metadata: {
-            from: @from,
-            email: @email,
-            item: @item
+            From: @from,
+            Email: @email,
+            Message: @message,
+            Item: @item
           }
         )
 
