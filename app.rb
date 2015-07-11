@@ -70,6 +70,8 @@ class App < Sinatra::Base
   end
 
   get '/gifts' do
-
+    content_type :json
+    @gifts = Redis::HashKey.new('gifts')
+    @gifts.all.to_json
   end
 end
