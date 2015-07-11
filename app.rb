@@ -5,7 +5,9 @@ class App < Sinatra::Base
   post '/charge' do
     content_type :json
     cross_origin
+
     begin
+        @id = params[:id]
         @from = params[:from]
         @email = params[:email]
         @message = params[:message]
@@ -25,6 +27,11 @@ class App < Sinatra::Base
             Item: @item
           }
         )
+
+        if @charge
+          @gifts = Redis::HashKey.new('gifts')
+          @gifts.incr(@id)
+        end
 
         @charge.to_json
 
