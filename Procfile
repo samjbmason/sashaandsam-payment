@@ -1,1 +1,1 @@
-web: bundle exec rackup config/puma.rb
+web: bundle exec rackup /config/puma.rb
