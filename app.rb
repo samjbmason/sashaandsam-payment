@@ -24,6 +24,7 @@ class App < Sinatra::Base
           currency: 'gbp',
           source: @stripe_token,
           description: "#{@from} paid for #{@item}",
+          receipt_email: @email,
           metadata: {
             From: @from,
             Email: @email,
