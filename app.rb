@@ -75,7 +75,14 @@ class App < Sinatra::Base
 
   get '/gifts' do
     cross_origin
+
     @gifts = Redis::HashKey.new('gifts')
+
+    # if @gifts.empty?
+    #   9.times do |i|
+    #     @gifts[i+1] = 0
+    #   end
+    # end
     @gifts.all.to_json
   end
 end
