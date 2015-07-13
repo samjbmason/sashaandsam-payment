@@ -40,7 +40,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   json
-  puma
+  puma (~> 2.11.3)
   redis-objects
   sinatra
   sinatra-cross_origin (~> 0.3.1)
