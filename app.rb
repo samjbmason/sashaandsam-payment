@@ -2,10 +2,14 @@ class App < Sinatra::Base
   register Sinatra::CrossOrigin
   Stripe.api_key = ENV['STRIPE_SECRET_KEY']
 
-  post '/charge' do
-    content_type :json
-    cross_origin
+  before do
+   content_type :json
+   headers 'Access-Control-Allow-Origin' => '*',
+           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST'],
+           'Access-Control-Allow-Headers' => 'Content-Type'
+  end
 
+  post '/charge' do
     begin
         @id = params[:id]
         @from = params[:from]
@@ -70,7 +74,6 @@ class App < Sinatra::Base
   end
 
   get '/gifts' do
-    content_type :json
     @gifts = Redis::HashKey.new('gifts')
     @gifts.all.to_json
   end
